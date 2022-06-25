@@ -16,9 +16,7 @@ public class PokeDTO {
     private int defence;
     private int speed;
 
-    public PokeDTO() {
-
-    }
+    public PokeDTO() { }
 
     public String getName() {
         return name;

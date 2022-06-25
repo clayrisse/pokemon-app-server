@@ -14,11 +14,11 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class TrainerDTO {
+
     @NotEmpty
     @NotNull
     @Column(unique = true)
     private String username;
-
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "dd-MM-yyyy")
@@ -32,7 +32,6 @@ public class TrainerDTO {
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -40,7 +39,6 @@ public class TrainerDTO {
     public Date getBirth() {
         return birth;
     }
-
     public void setBirth(Date birth) {
         this.birth = birth;
     }
@@ -48,7 +46,6 @@ public class TrainerDTO {
     public String getPicture() {
         return picture;
     }
-
     public void setPicture(String picture) {
         this.picture = picture;
     }
@@ -56,7 +53,6 @@ public class TrainerDTO {
     public String getHobby() {
         return hobby;
     }
-
     public void setHobby(String hobby) {
         this.hobby = hobby;
     }

@@ -14,17 +14,20 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("api/trainer/")
 public class TrainerController {
-    @Autowired
-    TrainerService trainerService;
+
+    @Autowired  TrainerService trainerService;
 
     @GetMapping("/find_by_id/{id}")
+//    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Trainer findEmployee(@PathVariable long id) {
         return trainerService.findById(id);
     }
 
     @GetMapping("/findAll")
+//    @GetMapping("/all")
     @CrossOrigin()
     @ResponseStatus(HttpStatus.ACCEPTED)
     public List<Trainer> findAll() {
@@ -37,6 +40,7 @@ public class TrainerController {
     public void delete(@PathVariable long id){ trainerService.deleteTrainer(id);}
 
     @PostMapping("/add_trainer")
+//    @PostMapping("/add")
     @CrossOrigin()
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Trainer addTrainer(@RequestBody @Valid TrainerDTO trainer){
@@ -44,6 +48,7 @@ public class TrainerController {
     }
 
     @PutMapping("/modify_attributes/{id}")
+//    @PutMapping("/update/{id}")
     @CrossOrigin()
     @ResponseStatus(HttpStatus.OK)
     public Trainer modifyAttributes(@PathVariable long id, @RequestParam Optional<String> username,

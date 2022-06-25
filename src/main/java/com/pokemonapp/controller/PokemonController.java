@@ -10,17 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pokemon/")
+@RequestMapping("api/pokemon/")
 public class PokemonController {
 
-    @Autowired
-    PokemonService pokemonService;
-
+    @Autowired  PokemonService pokemonService;
     @Autowired  PokemonRepository pokemonRepository;
-
 
     @GetMapping("all")
     @ResponseStatus(HttpStatus.OK)
@@ -36,7 +34,7 @@ public class PokemonController {
 
     @PostMapping("create")
     @ResponseStatus(HttpStatus.CREATED)
-    public Pokemon createPokemon(@RequestBody PokeDTO pokeDTO){
+    public Pokemon createPokemon(@RequestBody @Valid PokeDTO pokeDTO){
         return pokemonService.createPokemon(pokeDTO);
     }
 
