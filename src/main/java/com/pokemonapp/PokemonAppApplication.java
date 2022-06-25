@@ -28,11 +28,11 @@ public class PokemonAppApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		pokemonRepository.saveAll(List.of(
 				new Pokemon("https://cdn2.actitudfem.com/media/files/styles/large/public/images/2014/07/memegrande.jpg"
-						,"n1", 1, 1, 1, 1, new Stats(1,1,1,1,1,1)),
+						,"motoko", 1, 1, 1, 1, new Stats(1,1,1,1,1,1)),
 				new Pokemon("https://cdn2.actitudfem.com/media/files/styles/large/public/images/2014/07/memegrande.jpg"
-						,"n2", 1, 1, 1, 1, new Stats(1,1,1,1,1,1)),
+						,"rocio", 1, 1, 1, 1, new Stats(1,1,1,1,1,1)),
 				new Pokemon("https://cdn2.actitudfem.com/media/files/styles/large/public/images/2014/07/memegrande.jpg"
-						,"n3", 1, 1, 1, 1, new Stats(1,1,1,1,1,1)),
+						,"claudia", 1, 1, 1, 1, new Stats(1,1,1,1,1,1)),
 				new Pokemon("https://cdn2.actitudfem.com/media/files/styles/large/public/images/2014/07/memegrande.jpg"
 						,"n4", 1, 1, 1, 1, new Stats(1,1,1,1,1,1))
 		));
