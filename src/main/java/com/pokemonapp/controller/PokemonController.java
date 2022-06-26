@@ -10,33 +10,30 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pokemon/")
+@RequestMapping("api/pokemon/")
 public class PokemonController {
 
-    @Autowired
-    PokemonService pokemonService;
+    @Autowired  PokemonService pokemonService;
 
-    @Autowired  PokemonRepository pokemonRepository;
-
-
-    @GetMapping("all")
+    @GetMapping("all") //@CrossOrigin()
     @ResponseStatus(HttpStatus.OK)
-    public List<Pokemon> getAllPokemon(){
-       return pokemonService.getAllPokemon();
+    public List<Pokemon> getAllPokemon() {
+        return pokemonService.getAllPokemon();
     }
 
-    @GetMapping("{name}")
+    @GetMapping("{name}") //@CrossOrigin()
     @ResponseStatus(HttpStatus.OK)
-    public Pokemon getPokemon(@PathVariable String name){
+    public Pokemon getPokemon(@PathVariable String name) {
         return pokemonService.getPokemon(name);
     }
 
-    @PostMapping("create")
+    @PostMapping("create") //@CrossOrigin()
     @ResponseStatus(HttpStatus.CREATED)
-    public Pokemon createPokemon(@RequestBody PokeDTO pokeDTO){
+    public Pokemon createPokemon(@RequestBody @Valid PokeDTO pokeDTO) {
         return pokemonService.createPokemon(pokeDTO);
     }
 

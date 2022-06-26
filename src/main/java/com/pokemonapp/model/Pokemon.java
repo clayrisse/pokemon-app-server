@@ -3,6 +3,8 @@ package com.pokemonapp.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 
@@ -11,19 +13,19 @@ public class Pokemon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String image;
-
     @NotEmpty
     @NotNull
     @Column( unique= true )
     private String name;
+    private String image;
     private int height;
     private int weight;
     private int experience;
     private int items;
-
     @Embedded
     private Stats stats;
+    @ManyToMany(mappedBy = "pokeList")
+    private List<Trainer> trainerList =new ArrayList<>();
 
     public Pokemon() {
     }
@@ -38,10 +40,12 @@ public class Pokemon {
         this.stats = stats;
     }
 
+    public List<Trainer> getTrainerList() { return trainerList; }
+    public void setTrainerList(List<Trainer> trainerList) { this.trainerList = trainerList; }
+
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
@@ -49,7 +53,6 @@ public class Pokemon {
     public String getImage() {
         return image;
     }
-
     public void setImage(String image) {
         this.image = image;
     }
@@ -57,7 +60,6 @@ public class Pokemon {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -65,7 +67,6 @@ public class Pokemon {
     public int getHeight() {
         return height;
     }
-
     public void setHeight(int height) {
         this.height = height;
     }
@@ -73,7 +74,6 @@ public class Pokemon {
     public int getWeight() {
         return weight;
     }
-
     public void setWeight(int weight) {
         this.weight = weight;
     }
@@ -81,7 +81,6 @@ public class Pokemon {
     public int getExperience() {
         return experience;
     }
-
     public void setExperience(int experience) {
         this.experience = experience;
     }
@@ -89,7 +88,6 @@ public class Pokemon {
     public int getItems() {
         return items;
     }
-
     public void setItems(int items) {
         this.items = items;
     }
@@ -97,7 +95,6 @@ public class Pokemon {
     public Stats getStats() {
         return stats;
     }
-
     public void setStats(Stats stats) {
         this.stats = stats;
     }
