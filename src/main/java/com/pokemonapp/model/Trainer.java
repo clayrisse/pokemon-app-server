@@ -1,24 +1,22 @@
 package com.pokemonapp.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.StringTokenizer;
-
+import java.util.*;
 
 @Entity
 public class Trainer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @NotEmpty
     @NotNull
     @Column(unique = true)
@@ -31,7 +29,8 @@ public class Trainer {
     private String hobby;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
-    @JoinTable( name = "TrainerClauPokenon",
+    @JsonIgnore
+    @JoinTable( name = "TrainerPokenon",
                 joinColumns = {@JoinColumn(name = "trainerId")},
                 inverseJoinColumns = {@JoinColumn(name = "pokeId")})
     private List<Pokemon> pokeList = new ArrayList<>();
@@ -55,8 +54,20 @@ public class Trainer {
 
     public void addPokemon(Pokemon pokemon) {
         System.err.println("asignando pokemon a trainer");
+        if (this.pokeList.size() >= 7) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Only 7 Pokemon per trainer");
+        }
         this.pokeList.add(pokemon);
         pokemon.getTrainerList().add(this);
+    }
+
+    public void removePokemon(long pokeId) {
+        System.err.println("sacando pokemon del team");
+        Pokemon pokemon = this.pokeList.stream().filter(p -> p.getId() == pokeId).findFirst().orElse(null);
+        if (pokemon != null) {
+            this.pokeList.remove(pokemon);
+            pokemon.getTrainerList().remove(this);
+        }
     }
 
     public List<Pokemon> getPokeList() { return pokeList; }

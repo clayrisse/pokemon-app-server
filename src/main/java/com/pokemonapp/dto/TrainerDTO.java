@@ -1,4 +1,4 @@
-package com.pokemonapp.DTO;
+package com.pokemonapp.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;

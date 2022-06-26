@@ -58,6 +58,10 @@ public class PokemonAppApplication implements CommandLineRunner {
 		t2.addPokemon(p2);
 		t2.addPokemon(p3);
 		trainerRepository.save(t2);
+//		trainerRepository.delete(t2);
+		trainerRepository.deleteById(t2.getId());
+		t2.removePokemon(3);
+		trainerRepository.save(t2);
 
 
 //---------------------------------------------------------------------Rocio

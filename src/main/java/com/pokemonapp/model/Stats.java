@@ -27,7 +27,6 @@ public class Stats {
     public int getHp() {
         return hp;
     }
-
     public void setHp(int hp) {
         this.hp = hp;
     }
@@ -35,7 +34,6 @@ public class Stats {
     public int getAttack() {
         return attack;
     }
-
     public void setAttack(int attack) {
         this.attack = attack;
     }
@@ -43,7 +41,6 @@ public class Stats {
     public int getSpAttack() {
         return spAttack;
     }
-
     public void setSpAttack(int spAttack) {
         this.spAttack = spAttack;
     }
@@ -51,7 +48,6 @@ public class Stats {
     public int getSpDefence() {
         return spDefence;
     }
-
     public void setSpDefence(int spDefence) {
         this.spDefence = spDefence;
     }
@@ -59,7 +55,6 @@ public class Stats {
     public int getDefence() {
         return defence;
     }
-
     public void setDefence(int defence) {
         this.defence = defence;
     }
@@ -67,7 +62,6 @@ public class Stats {
     public int getSpeed() {
         return speed;
     }
-
     public void setSpeed(int speed) {
         this.speed = speed;
     }

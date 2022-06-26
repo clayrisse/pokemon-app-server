@@ -22,12 +22,10 @@ public class Pokemon {
     private int weight;
     private int experience;
     private int items;
-
-    @ManyToMany(mappedBy = "pokeList")
-    private List<Trainer> trainerList =new ArrayList<>();
-
     @Embedded
     private Stats stats;
+    @ManyToMany(mappedBy = "pokeList")
+    private List<Trainer> trainerList =new ArrayList<>();
 
     public Pokemon() {
     }

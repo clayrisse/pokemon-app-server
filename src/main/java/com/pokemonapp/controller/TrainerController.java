@@ -1,11 +1,17 @@
 package com.pokemonapp.controller;
 
-import com.pokemonapp.DTO.TrainerDTO;
+import com.pokemonapp.dto.TrainerDTO;
+import com.pokemonapp.dto.PokeDTO;
+import com.pokemonapp.model.Pokemon;
 import com.pokemonapp.model.Trainer;
+import com.pokemonapp.repository.PokemonRepository;
+import com.pokemonapp.repository.TrainerRepository;
+import com.pokemonapp.service.PokemonService;
 import com.pokemonapp.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -19,15 +25,21 @@ public class TrainerController {
 
     @Autowired  TrainerService trainerService;
 
-    @GetMapping("/find_by_id/{id}")
-//    @GetMapping("/{id}")
+
+    @GetMapping("/id/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Trainer findEmployee(@PathVariable long id) {
         return trainerService.findById(id);
     }
 
-    @GetMapping("/findAll")
-//    @GetMapping("/all")
+    @GetMapping("/name/{username}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Trainer getTrainerByUsername(@PathVariable String username) {
+        System.err.println("entre a by name");
+        return trainerService.findByUsername(username);
+    }
+
+    @GetMapping("/all")
     @CrossOrigin()
     @ResponseStatus(HttpStatus.ACCEPTED)
     public List<Trainer> findAll() {
@@ -37,23 +49,47 @@ public class TrainerController {
     @DeleteMapping("/delete/{id}")
     @CrossOrigin()
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void delete(@PathVariable long id){ trainerService.deleteTrainer(id);}
+    public void delete(@PathVariable long id) {
+        trainerService.deleteTrainer(id);
+    }
 
-    @PostMapping("/add_trainer")
-//    @PostMapping("/add")
+    @PostMapping("/add")
     @CrossOrigin()
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Trainer addTrainer(@RequestBody @Valid TrainerDTO trainer){
-        return trainerService.addTrainerByName(trainer);
+        return trainerService.addTrainer(trainer);
     }
 
-    @PutMapping("/modify_attributes/{id}")
-//    @PutMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     @CrossOrigin()
     @ResponseStatus(HttpStatus.OK)
-    public Trainer modifyAttributes(@PathVariable long id, @RequestParam Optional<String> username,
-                                    @RequestParam Optional<Date> birth, @RequestParam Optional<String> picture, @RequestParam Optional<String> hobby ) {
+    public Trainer modifyAttributes(@PathVariable long id,
+                                    //porque esto no va to-do junto como RequestBody y usas el mismo DTO?
+                                    @RequestParam Optional<Date> birth,
+                                    @RequestParam Optional<String> username,
+                                    @RequestParam Optional<String> picture,
+                                    @RequestParam Optional<String> hobby ) {
         return trainerService.modifyAttributes(id, username, picture, birth, hobby);
+    }
+
+    @PostMapping("{username}/poke/add") //@CrossOrigin()
+    @ResponseStatus(HttpStatus.CREATED)
+    public Trainer addPokeToTrainer(@PathVariable String username,
+                                    @RequestBody @Valid PokeDTO pokeDTO) {
+        return trainerService.addPokeToTrainer(username, pokeDTO);
+    }
+
+    @PutMapping("{username}/poke/remove/{pokename}") //@CrossOrigin()
+    @ResponseStatus(HttpStatus.CREATED)
+    public Trainer removePokeFromTrainer(@PathVariable String username,
+                                        @PathVariable String pokename) {
+        return trainerService.removePokeFromTrainer(username, pokename);
+    }
+
+    @GetMapping("{username}/poke/list") //@CrossOrigin()
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<Pokemon> getPokemonList(@PathVariable String username) {
+        return trainerService.getPokemonList(username);
     }
 
 }
