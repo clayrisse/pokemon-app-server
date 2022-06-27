@@ -23,7 +23,6 @@ public class Trainer {
     private String username;
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date birth;
     private String picture;
     private String hobby;
@@ -41,7 +40,7 @@ public class Trainer {
     public Trainer(String username, Date birth, String hobby) {
         setUsername(username);
         this.birth = birth;
-        this.picture = "https://www.kindpng.com/picc/m/21-214439_free-high-quality-person-icon-default-profile-picture.png";
+        this.picture = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/2048px-User_font_awesome.svg.png";
         this.hobby = hobby;
     }
 
