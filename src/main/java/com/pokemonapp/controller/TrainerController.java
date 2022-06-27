@@ -45,6 +45,7 @@ public class TrainerController {
     public void delete(@PathVariable long id) {
         trainerService.deleteTrainer(id);
     }
+
     @DeleteMapping("/delete_by_username/{username}")
     @CrossOrigin()
     @ResponseStatus(HttpStatus.ACCEPTED)
