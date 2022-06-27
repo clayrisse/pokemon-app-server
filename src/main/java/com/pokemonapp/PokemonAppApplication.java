@@ -38,6 +38,7 @@ public class PokemonAppApplication implements CommandLineRunner {
 //						,"n4", 1, 1, 1, 1, new Stats(1,1,1,1,1,1))
 //		));
 
+		/*
 		Trainer t1 = new Trainer("test", new Date(10-8-1998), "nada");
 		Trainer t2 = new Trainer("test2", new Date(10-8-1998), "nada");
 		Trainer t3 = new Trainer("test3", new Date(10-8-1998), "nada");
@@ -64,6 +65,8 @@ public class PokemonAppApplication implements CommandLineRunner {
 		trainerRepository.deleteById(t2.getId());
 		t2.removePokemon(3);
 		trainerRepository.save(t2);
+
+		 */
 
 
 //---------------------------------------------------------------------Rocio
