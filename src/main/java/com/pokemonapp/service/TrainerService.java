@@ -25,6 +25,9 @@ public class TrainerService {
     public List<Trainer> findAll(){ return trainerRepository.findAll();}
 
     public void deleteTrainer(long id){trainerRepository.deleteById(id);}
+    public void deleteTrainerByUsername(String username){
+        Trainer trainer = trainerRepository.findByUsername(username).get();
+        trainerRepository.deleteById(trainer.getId());}
 
     public Trainer findById(long id){
         if (trainerRepository.findById(id).isEmpty()) {
@@ -44,7 +47,8 @@ public class TrainerService {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "The Trainer already exists");
         }
         Trainer trainer = new Trainer(trainerDTO.getUsername(), trainerDTO.getBirth(), trainerDTO.getPicture(), trainerDTO.getHobby());
-        if (trainerDTO.getPicture() != null) trainer.setPicture(trainerDTO.getPicture());
+        System.out.println(trainer.getPicture());
+        if (trainerDTO.getPicture() != null || trainerDTO.getPicture().isEmpty()) trainer.setPicture("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/2048px-User_font_awesome.svg.png");
         return trainerRepository.save(trainer);
     }
 
