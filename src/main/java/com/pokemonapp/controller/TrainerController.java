@@ -4,17 +4,12 @@ import com.pokemonapp.dto.TrainerDTO;
 import com.pokemonapp.dto.PokeDTO;
 import com.pokemonapp.model.Pokemon;
 import com.pokemonapp.model.Trainer;
-import com.pokemonapp.repository.PokemonRepository;
-import com.pokemonapp.repository.TrainerRepository;
-import com.pokemonapp.service.PokemonService;
 import com.pokemonapp.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -26,42 +21,38 @@ public class TrainerController {
     @Autowired  TrainerService trainerService;
 
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/id/{id}") @CrossOrigin()
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Trainer findEmployee(@PathVariable long id) {
         return trainerService.findById(id);
     }
 
-    @GetMapping("/name/{username}")
+    @GetMapping("/name/{username}") @CrossOrigin()
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Trainer getTrainerByUsername(@PathVariable String username) {
         System.err.println("entre a by name");
         return trainerService.findByUsername(username);
     }
 
-    @GetMapping("/all")
-    @CrossOrigin()
+    @GetMapping("/all") @CrossOrigin()
     @ResponseStatus(HttpStatus.ACCEPTED)
     public List<Trainer> findAll() {
         return trainerService.findAll();
     }
 
-    @DeleteMapping("/delete/{id}")
-    @CrossOrigin()
+    @DeleteMapping("/delete/{id}") @CrossOrigin()
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void delete(@PathVariable long id) {
         trainerService.deleteTrainer(id);
     }
 
-    @PostMapping("/add")
-    @CrossOrigin()
+    @PostMapping("/add") @CrossOrigin()
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Trainer addTrainer(@RequestBody @Valid TrainerDTO trainer){
         return trainerService.addTrainer(trainer);
     }
 
-    @PutMapping("/update/{id}")
-    @CrossOrigin()
+    @PutMapping("/update/{id}") @CrossOrigin()
     @ResponseStatus(HttpStatus.OK)
     public Trainer modifyAttributes(@PathVariable long id,
                                     //porque esto no va to-do junto como RequestBody y usas el mismo DTO?
@@ -72,21 +63,29 @@ public class TrainerController {
         return trainerService.modifyAttributes(id, username, picture, birth, hobby);
     }
 
-    @PostMapping("{username}/poke/add") //@CrossOrigin()
+    @PostMapping("{username}/poke/add") @CrossOrigin()
     @ResponseStatus(HttpStatus.CREATED)
     public Trainer addPokeToTrainer(@PathVariable String username,
                                     @RequestBody @Valid PokeDTO pokeDTO) {
         return trainerService.addPokeToTrainer(username, pokeDTO);
     }
 
-    @PutMapping("{username}/poke/remove/{pokename}") //@CrossOrigin()
+    @PostMapping("{username}/poke/addobj") @CrossOrigin()
+    @ResponseStatus(HttpStatus.CREATED)
+    public Trainer addPokeObjToTrainer(@PathVariable String username,
+                                    @RequestBody @Valid Pokemon pokemon) {
+        System.err.println("entre---------- con poke");
+        return trainerService.addPokeObjToTrainer(username, pokemon);
+    }
+
+    @PutMapping("{username}/poke/remove/{pokename}") @CrossOrigin()
     @ResponseStatus(HttpStatus.CREATED)
     public Trainer removePokeFromTrainer(@PathVariable String username,
                                         @PathVariable String pokename) {
         return trainerService.removePokeFromTrainer(username, pokename);
     }
 
-    @GetMapping("{username}/poke/list") //@CrossOrigin()
+    @GetMapping("{username}/poke/list") @CrossOrigin()
     @ResponseStatus(HttpStatus.CREATED)
     public List<Pokemon> getPokemonList(@PathVariable String username) {
         return trainerService.getPokemonList(username);

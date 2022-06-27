@@ -19,19 +19,19 @@ public class PokemonController {
 
     @Autowired  PokemonService pokemonService;
 
-    @GetMapping("all") //@CrossOrigin()
+    @GetMapping("all") @CrossOrigin()
     @ResponseStatus(HttpStatus.OK)
     public List<Pokemon> getAllPokemon() {
         return pokemonService.getAllPokemon();
     }
 
-    @GetMapping("{name}") //@CrossOrigin()
+    @GetMapping("{name}") @CrossOrigin()
     @ResponseStatus(HttpStatus.OK)
     public Pokemon getPokemon(@PathVariable String name) {
         return pokemonService.getPokemon(name);
     }
 
-    @PostMapping("create") //@CrossOrigin()
+    @PostMapping("create") @CrossOrigin()
     @ResponseStatus(HttpStatus.CREATED)
     public Pokemon createPokemon(@RequestBody @Valid PokeDTO pokeDTO) {
         return pokemonService.createPokemon(pokeDTO);

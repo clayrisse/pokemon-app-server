@@ -20,6 +20,7 @@ public class TrainerService {
 
     @Autowired TrainerRepository trainerRepository;
     @Autowired PokemonService pokemonService;
+    @Autowired PokemonRepository pokemonRepository;
 
     public List<Trainer> findAll(){ return trainerRepository.findAll();}
 
@@ -61,6 +62,16 @@ public class TrainerService {
 
     public Trainer addPokeToTrainer(String username, PokeDTO pokeDTO) {
         Pokemon poke = pokemonService.getPokemon(pokemonService.createPokemon(pokeDTO).getName());
+        Trainer trainer = findByUsername(username);
+        if (trainer.getPokeList().contains(poke)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Pokemon already added");
+        }
+        trainer.addPokemon(poke);
+        return trainerRepository.save(trainer);
+    }
+
+    public Trainer addPokeObjToTrainer(String username, Pokemon pokemon) {
+        Pokemon poke = pokemonService.getPokemon((pokemonRepository.save(pokemon)).getName());
         Trainer trainer = findByUsername(username);
         if (trainer.getPokeList().contains(poke)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Pokemon already added");
