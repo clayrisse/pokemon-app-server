@@ -21,7 +21,6 @@ public class TrainerDTO {
     private String username;
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date birth;
 
     private String picture;
