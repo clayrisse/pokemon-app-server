@@ -1,5 +1,7 @@
 package com.pokemonapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -24,6 +26,7 @@ public class Pokemon {
     private int items;
     @Embedded
     private Stats stats;
+//    @JsonIgnore
     @ManyToMany(mappedBy = "pokeList")
     private List<Trainer> trainerList =new ArrayList<>();
 

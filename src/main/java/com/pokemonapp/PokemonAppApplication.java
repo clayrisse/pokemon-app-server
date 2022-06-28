@@ -40,30 +40,30 @@ public class PokemonAppApplication implements CommandLineRunner {
 
 		Trainer t1 = new Trainer("test", new Date(10-8-1998), "nada");
 		Trainer t2 = new Trainer("test2", new Date(10-8-1998), "nada");
-		Trainer t3 = new Trainer("test3", new Date(10-8-1998), "nada");
-		Pokemon p1 = new Pokemon("https://cdn2.actitudfem.com/media/files/styles/large/public/images/2014/07/memegrande.jpg","poketest1", 1, 1, 1, 1, new Stats(1,1,1,1,1,1));
-		Pokemon p2 = new Pokemon("https://cdn2.actitudfem.com/media/files/styles/large/public/images/2014/07/memegrande.jpg","poketest2", 1, 1, 1, 1, new Stats(1,1,1,1,1,1));
-		Pokemon p3 = new Pokemon("https://cdn2.actitudfem.com/media/files/styles/large/public/images/2014/07/memegrande.jpg","poketest3", 1, 1, 1, 1, new Stats(1,1,1,1,1,1));
+//		Trainer t3 = new Trainer("test3", new Date(10-8-1998), "nada");
+//		Pokemon p1 = new Pokemon("https://cdn2.actitudfem.com/media/files/styles/large/public/images/2014/07/memegrande.jpg","poketest1", 1, 1, 1, 1, new Stats(1,1,1,1,1,1));
+//		Pokemon p2 = new Pokemon("https://cdn2.actitudfem.com/media/files/styles/large/public/images/2014/07/memegrande.jpg","poketest2", 1, 1, 1, 1, new Stats(1,1,1,1,1,1));
+//		Pokemon p3 = new Pokemon("https://cdn2.actitudfem.com/media/files/styles/large/public/images/2014/07/memegrande.jpg","poketest3", 1, 1, 1, 1, new Stats(1,1,1,1,1,1));
 
 		trainerRepository.save(t1);
-		pokemonRepository.save(p1);
-		pokemonRepository.save(p2);
-		pokemonRepository.save(p3);
-		t1.addPokemon(p1);
-		t1.addPokemon(p2);
-		t1.addPokemon(p3);
-		trainerRepository.save(t1);
-		trainerRepository.save(t3);
-
+//		pokemonRepository.save(p1);
+//		pokemonRepository.save(p2);
+//		pokemonRepository.save(p3);
+//		t1.addPokemon(p1);
+//		t1.addPokemon(p2);
+//		t1.addPokemon(p3);
+//		trainerRepository.save(t1);
+//		trainerRepository.save(t3);
+//
 		trainerRepository.save(t2);
-		t2.addPokemon(p1);
-		t2.addPokemon(p2);
-		t2.addPokemon(p3);
-		trainerRepository.save(t2);
-//		trainerRepository.delete(t2);
-		trainerRepository.deleteById(t2.getId());
-		t2.removePokemon(3);
-		trainerRepository.save(t2);
+//		t2.addPokemon(p1);
+//		t2.addPokemon(p2);
+//		t2.addPokemon(p3);
+//		trainerRepository.save(t2);
+////		trainerRepository.delete(t2);
+//		trainerRepository.deleteById(t2.getId());
+//		t2.removePokemon(3);
+//		trainerRepository.save(t2);
 
 
 //---------------------------------------------------------------------Rocio
