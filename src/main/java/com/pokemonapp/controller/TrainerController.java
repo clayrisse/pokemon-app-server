@@ -63,6 +63,7 @@ public class TrainerController {
     @CrossOrigin()
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Trainer addTrainer(@RequestBody @Valid TrainerDTO trainer){
+        System.out.println(trainer.getBirth().getYear());
         return trainerService.addTrainer(trainer);
     }
 
