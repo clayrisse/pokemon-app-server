@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+###### claudia
+
+!**/src/main/java/resources/application.properties

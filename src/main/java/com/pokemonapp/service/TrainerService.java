@@ -65,6 +65,7 @@ public class TrainerService {
     }
 
     public Trainer addPokeToTrainer(String username, PokeDTO pokeDTO) {
+        System.err.println("entre en el bakc");
         Pokemon poke = pokemonService.getPokemon(pokemonService.createPokemon(pokeDTO).getName());
         Trainer trainer = findByUsername(username);
         if (trainer.getPokeList().contains(poke)) {
@@ -75,6 +76,7 @@ public class TrainerService {
     }
 
     public Trainer addPokeObjToTrainer(String username, Pokemon pokemon) {
+        System.err.println("entre en el bak");
         Pokemon poke = pokemonService.getPokemon((pokemonRepository.save(pokemon)).getName());
         Trainer trainer = findByUsername(username);
         if (trainer.getPokeList().contains(poke)) {

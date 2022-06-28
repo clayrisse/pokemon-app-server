@@ -70,7 +70,8 @@ public class TrainerController {
         return trainerService.modifyAttributes(id, username, picture, birth, hobby);
     }
 
-    @PostMapping("{username}/poke/add") @CrossOrigin()
+    @PostMapping("{username}/poke/add")
+    @CrossOrigin()
     @ResponseStatus(HttpStatus.CREATED)
     public Trainer addPokeToTrainer(@PathVariable String username,
                                     @RequestBody @Valid PokeDTO pokeDTO) {
@@ -85,7 +86,7 @@ public class TrainerController {
         return trainerService.addPokeObjToTrainer(username, pokemon);
     }
 
-    @PutMapping("{username}/poke/remove/{pokename}") @CrossOrigin()
+    @DeleteMapping("{username}/poke/remove/{pokename}") @CrossOrigin()
     @ResponseStatus(HttpStatus.CREATED)
     public Trainer removePokeFromTrainer(@PathVariable String username,
                                         @PathVariable String pokename) {
