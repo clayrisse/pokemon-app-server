@@ -28,6 +28,7 @@ public class Pokemon {
     private Stats stats;
 //    @JsonIgnore
     @ManyToMany(mappedBy = "pokeList")
+    @JsonIgnore
     private List<Trainer> trainerList =new ArrayList<>();
 
     public Pokemon() {

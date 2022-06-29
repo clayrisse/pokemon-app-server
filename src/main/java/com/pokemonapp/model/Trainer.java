@@ -28,7 +28,7 @@ public class Trainer {
     private String hobby;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
-    @JsonIgnore
+
     @JoinTable( name = "TrainerPokenon",
                 joinColumns = {@JoinColumn(name = "trainerId")},
                 inverseJoinColumns = {@JoinColumn(name = "pokeId")})
